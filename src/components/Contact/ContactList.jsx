@@ -1,44 +1,43 @@
-// Hooks react-redux
-import { useSelector, useDispatch } from 'react-redux';
+// Hooks
+import { useMemo } from 'react';
+import useContacts from 'Hooks/useContacts';
 
-// Redux-slice
-import { deleteContact } from 'redux/contact/contactSlice';
+// Loader
+import Loader from 'components/Loader/Loader';
 
 // Styles
 import s from './Contact.module.css';
 
+// Components
+import ContactFilter from './ContactFilter';
+import ContactItem from './ContactItem';
+
 const ContactList = () => {
-  const dispatch = useDispatch();
+  const { filteredContacts, isLoading, isSuccess } = useContacts();
 
-  const contacts = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.contacts.filter);
+  const contactsSum = filteredContacts?.length;
 
-  const filterTolowerCase = filter.toLowerCase();
-
-  const filteredContacts = () => {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filterTolowerCase)
-    );
-  };
-
-  const visibleContacts = filteredContacts();
+  const sortContactsById = useMemo(() => {
+    return [...filteredContacts].sort((a, b) => b.id - a.id);
+  }, [filteredContacts]);
 
   return (
-    <ul className={s.contactList}>
-      {visibleContacts.map(({ id, name, number }) => (
-        <li key={id} className={s.contactList__item}>
-          <p className={s.contactList__text}>
-            {name}: {number}
-          </p>
-          <button
-            className={s.contactList__button}
-            onClick={() => dispatch(deleteContact(id))}
-          >
-            Delete
-          </button>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ContactFilter />
+      {!contactsSum ? (
+        <p className={s.contactList__text}>Phonebook is empty.</p>
+      ) : (
+        <p className={s.contactList__text}>Contacts: {contactsSum}</p>
+      )}
+      {isLoading && <Loader />}
+      {isSuccess && (
+        <ul className={s.contactList}>
+          {sortContactsById.map(({ id, name, number }) => (
+            <ContactItem key={id} id={id} name={name} number={number} />
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
 

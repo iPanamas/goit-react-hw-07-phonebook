@@ -1,19 +1,19 @@
 // Components
 import ContactForm from './Contact/ContactForm';
 import ContactList from './Contact/ContactList';
-import ContactFilter from './Contact/ContactFilter';
-
+import ContactsFooter from './Contact/ContactFooter';
+import { PhonebookTitle, ContactTitle } from './Contact/ContactTitle';
 // Styles
 import s from './Contact/Contact.module.css';
 
 const App = () => {
   return (
     <div className={s.phoneboook}>
-      <h1 className={s.phonebookTitle}>Phonebook</h1>
+      <PhonebookTitle />
       <ContactForm />
-      <h2 className={s.contactsTitle}>Contacts</h2>
-      <ContactFilter />
+      <ContactTitle />
       <ContactList />
+      <ContactsFooter />
     </div>
   );
 };

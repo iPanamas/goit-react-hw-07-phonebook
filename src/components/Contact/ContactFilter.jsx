@@ -1,14 +1,12 @@
-// Hooks react-redux
-import { useSelector, useDispatch } from 'react-redux';
+import { changeFilter } from 'redux/contacts/contactSlice';
 
-// Redux-slice
-import { changeFilter } from 'redux/contact/contactSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 // Styles
 import s from './Contact.module.css';
 
 const ContactFilter = () => {
-  const filterValue = useSelector(state => state.contacts.filter);
+  const filter = useSelector(state => state.filter.value);
   const dispatch = useDispatch();
 
   return (
@@ -17,7 +15,7 @@ const ContactFilter = () => {
       <input
         className={s.findContactInput}
         type="text"
-        value={filterValue}
+        value={filter}
         onChange={event => dispatch(changeFilter(event.target.value))}
       />
     </label>

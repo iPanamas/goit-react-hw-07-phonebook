@@ -1,3 +1,17 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 1);
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -12,15 +26,14 @@ select:-webkit-autofill:focus {
 }
 
 
-
 .phoneboook {
   width: 400px;
-position: absolute;
+  position: absolute;
   transform: translate(-50%,-50%);
   top: 50%;
   left: 50%;
   background-color: aqua;
-  padding: 50px;
+  padding: 50px 25px 0 25px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 20px;
   border-left: 1px solid rgba(255, 255, 255, 0.3);
@@ -32,17 +45,26 @@ position: absolute;
 }
 
 .phonebookTitle {
-    margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    margin-bottom: 15px;
     font-weight: 500;
     color: #fff;
     opacity: 0.7;
-    font-size: 30px;
-    margin-top: 0;
-
+    font-size: 27px;
+        margin-top: 0;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
+.phonebookTitle > svg {
+  margin-left: 10px;
+}
+
 .contactsTitle {
+    display: flex;
+      align-items: center;
+      justify-content: center;
     font-weight: 500;
     color: #fff;
     opacity: 0.7;
@@ -50,7 +72,10 @@ position: absolute;
     margin-top: 0;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   margin-bottom: 10px;
+}
 
+.contactsTitle>svg {
+  margin-left: 10px;
 }
 
 .phonebookForm {
@@ -73,7 +98,7 @@ position: absolute;
 .phonebookInput {
   margin-top: 3px;
     background: transparent;
-    width: 200px;
+    width: 175px;
     padding: 1em;
     border: none;
     border-left: 1px solid rgba(255, 255, 255, 0.3);
@@ -93,6 +118,10 @@ position: absolute;
 .phonebookInput:focus {
   background: rgba(255,255,255,0.1);
   box-shadow: 4px 4px 60px 8px rgba(0,0,0,0.2);
+}
+
+.phonebookInput::placeholder {
+  font-size: 15px;
 }
 
 .phonebookButton {
@@ -135,7 +164,7 @@ position: absolute;
 .findContactInput {
     margin-top: 10px;
     background: transparent;
-    width: 200px;
+    width: 175px;
     padding: 1em;
     margin-bottom: 2em;
     border: none;
@@ -159,15 +188,23 @@ position: absolute;
 }
 
 .contactList {
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
 }
 
 .contactList__item {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin: 5px 0;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.contactList__item:last-child {
+  margin-bottom: 0;
+  border: 0;
 }
 
 .contactList__text {
@@ -187,8 +224,30 @@ position: absolute;
   border-radius: 5px;
   color: #fff;
   opacity: 0.7;
-  font-size: 14px;
+  font-size: 11px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   margin-bottom: 10px;
 }
 
+.footer {
+  padding: 30px 0;
+}
+
+.footerLink {
+  font-family: 'Kaushan Script', cursive;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.7;
+  font-size: 23px;
+  text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
+}
+
+.footerLink > svg {
+  font-size: 30px;
+  margin-right: 10px;
+}

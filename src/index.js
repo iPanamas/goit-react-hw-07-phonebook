@@ -5,9 +5,6 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-// Redux-persist
-import { PersistGate } from 'redux-persist/integration/react';
-
 // Toast notify
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,11 +17,9 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store.store}>
-      <PersistGate loading={null} persistor={store.persistor}>
-        <App />
-      </PersistGate>
+    <Provider store={store}>
+      <App />
     </Provider>
-    <ToastContainer />
+    <ToastContainer autoClose={1500} />
   </React.StrictMode>
 );
